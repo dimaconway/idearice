@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if [ $# -gt 0 ];then
+    if [ "$1" == "build" ]; then
+        docker build -f Dockerfile-base -t idearice-base .
+        docker build -f Dockerfile-prod -t idearice-prod .
+
+    elif [ "$1" == "run" ]; then
+        docker run -it --rm -v $(pwd):/app -w /app --name idearice idearice-base
+
+    fi
+fi

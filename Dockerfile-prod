@@ -1,0 +1,3 @@
+FROM idearice-base:latest
+
+COPY ./ /app/

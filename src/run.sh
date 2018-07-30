@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-if [ ! -f .env ]; then
-    echo "ERROR: .env file not found"
-    exit 1
-fi
+echo ${BOT_TOKEN} ${CHAT_ID}
 
-source ./.env
-
-php -f ./main.php ${BOT_TOKEN} ${CHAT_ID}
+#php -f ./main.php ${BOT_TOKEN} ${CHAT_ID}

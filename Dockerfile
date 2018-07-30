@@ -21,6 +21,9 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ARG src=./src
-ARG app_root=/app
+ARG src
+ARG app_root
 COPY ${src} ${app_root}
+
+WORKDIR ${app_root}
+ENTRYPOINT ./entrypoint.sh

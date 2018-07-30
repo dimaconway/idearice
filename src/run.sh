@@ -5,6 +5,6 @@ if [ ! -f .env ]; then
     exit 1
 fi
 
-source .env
+source ./.env
 
-php -f src/main.php ${BOT_TOKEN} ${CHAT_ID}
+php -f ./main.php ${BOT_TOKEN} ${CHAT_ID}

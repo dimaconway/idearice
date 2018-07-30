@@ -1,6 +1,0 @@
-.idea
-.git
-.env
-.dockerignore
-Docker*
-shrt

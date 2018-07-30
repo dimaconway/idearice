@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-MAINTAINER dimaconway@gmail.com
+LABEL maintainer="dimaconway@gmail.com"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -19,4 +19,8 @@ RUN apt-get update \
     && apt-get remove -y --purge software-properties-common \
     && apt-get -y autoremove \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ARG src=./src
+ARG app_root=/app
+COPY ${src} ${app_root}

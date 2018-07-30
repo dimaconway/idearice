@@ -1,0 +1,6 @@
+version: "3"
+services:
+  bot:
+    working_dir: ${APP_ROOT}
+    volumes:
+    - ${SRC}:${APP_ROOT}

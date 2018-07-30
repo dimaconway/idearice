@@ -1,0 +1,10 @@
+version: "3"
+services:
+  bot:
+    image: bot
+    env_file: .env
+    build:
+      context: .
+      args:
+        app_root: ${APP_ROOT}
+        src: ${SRC}

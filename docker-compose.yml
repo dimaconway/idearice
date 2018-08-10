@@ -7,4 +7,4 @@ services:
       context: .
       args:
         app_root: ${APP_ROOT:-/app}
-        src: ${SRC:-./src}
+        src: ${SRC:-./bot}

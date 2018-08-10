@@ -10,7 +10,8 @@ RUN apt-get update \
     && dpkg-reconfigure -f noninteractive tzdata
 
 RUN apt-get update \
-    && apt-get install -y curl zip unzip git software-properties-common\
+    && apt-get install -y cron curl zip unzip git \
+       software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
     && apt-get update \
     && apt-get install -y php7.2-cli php7.2-zip php7.2-mbstring \
@@ -24,6 +25,15 @@ RUN apt-get update \
 ARG src
 ARG app_root
 COPY ${src} ${app_root}
+
+
+# Add crontab file in the cron directory
+ADD ${src}/crontab /etc/cron.d/bot
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/bot
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
+
 
 WORKDIR ${app_root}
 ENTRYPOINT ./entrypoint.sh

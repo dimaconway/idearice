@@ -90,7 +90,8 @@ function getWallpapers(): iterable
             $uniqueImageNames[] = $imageNameFromUrl;
             $wallpapers[] = new Wallpaper(
                 $image->urlbase,
-                $image->copyright
+                $image->copyright,
+                $market
             );
         }
     }

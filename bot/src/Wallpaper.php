@@ -16,18 +16,24 @@ class Wallpaper
     /** @var string */
     private $copyrightText;
 
+    /** @var string */
+    private $mkt;
+
     /**
      * Wallpaper constructor.
      *
      * @param $basePictureUrl
      * @param $copyrightText
+     * @param $mkt
      */
     public function __construct(
         $basePictureUrl,
-        $copyrightText
+        $copyrightText,
+        $mkt
     ) {
         $this->basePictureUrl = $basePictureUrl;
         $this->copyrightText = $copyrightText;
+        $this->mkt = $mkt;
     }
 
     /**

@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-printenv | grep "BOT_TOKEN" > ${APP_ROOT}/env.sh
-printenv | grep "CHAT_ID" >> ${APP_ROOT}/env.sh
-printenv | grep "APP_ROOT" >> ${APP_ROOT}/env.sh
+printenv | grep "BOT_TOKEN" > /app/env.sh
+printenv | grep "CHAT_ID" >> /app/env.sh
 
 
 echo '['`date`']' 'Container set' >> /var/log/cron.log

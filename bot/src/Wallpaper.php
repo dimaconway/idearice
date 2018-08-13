@@ -3,21 +3,23 @@ declare (strict_types=1);
 
 namespace IdeaRice;
 
+use JsonSerializable;
+
 /**
  * Class Wallpaper
  *
  * @package IdeaRice
  */
-class Wallpaper
+class Wallpaper implements JsonSerializable
 {
+    /** @var string */
+    private $mkt;
+
     /** @var string */
     private $basePictureUrl;
 
     /** @var string */
     private $copyrightText;
-
-    /** @var string */
-    private $mkt;
 
     /**
      * Wallpaper constructor.
@@ -86,5 +88,18 @@ class Wallpaper
     public function getMobile(): string
     {
         return $this->getResolution('1080x1920');
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     *
+     * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 }

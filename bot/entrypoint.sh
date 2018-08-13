@@ -7,6 +7,6 @@ printenv | grep "USED_WALLPAPERS_FILENAME" >> /app/env.sh
 
 
 
-echo '['`date`']' 'Container set' >> /var/log/cron.log
+echo '['`date +%Y-%m-%dT%H:%M:%S.%6N%:z`']' 'Container set' >> /var/log/cron.log
 cron
 tail -f /var/log/cron.log

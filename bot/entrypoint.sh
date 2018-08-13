@@ -2,6 +2,9 @@
 
 printenv | grep "BOT_TOKEN" > /app/env.sh
 printenv | grep "CHAT_ID" >> /app/env.sh
+printenv | grep "PATH_TO_USED_WALLPAPERS_DIRECTORY" >> /app/env.sh
+printenv | grep "USED_WALLPAPERS_FILENAME" >> /app/env.sh
+
 
 
 echo '['`date`']' 'Container set' >> /var/log/cron.log

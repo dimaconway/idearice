@@ -5,9 +5,11 @@ declare (strict_types=1);
 namespace IdeaRice;
 
 
-if (3 !== $argc) {
+if (4 !== $argc) {
     echo 'Run it like this:' . PHP_EOL
-        . 'php -f ' . basename(__FILE__) . ' <BOT_TOKEN> <CHAT_ID> ' . PHP_EOL;
+        . 'php -f ' . basename(__FILE__)
+        . ' BOT_TOKEN CHAT_ID PATH_TO_USED_WALLPAPERS_FILE'
+        . PHP_EOL;
     die;
 }
 
@@ -15,10 +17,10 @@ if (3 !== $argc) {
 require_once __DIR__ . '/src/include.php';
 
 
-[, $botToken, $chatId] = $argv;
+[, $botToken, $chatId, $pathToUsedWallpapersFile] = $argv;
 
-foreach (getWallpapers() as $wallpaper) {
-    echo \var_export($wallpaper, true);
+foreach (getWallpapers($pathToUsedWallpapersFile) as $wallpaper) {
+    echo \json_encode($wallpaper);
     echo PHP_EOL;
     postByUrl(getUrlToPostMobile($wallpaper, $botToken, $chatId));
     echo PHP_EOL;

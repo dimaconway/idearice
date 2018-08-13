@@ -8,3 +8,9 @@ services:
       args:
         app_root: ${APP_ROOT:-/app}
         src: ${SRC:-./bot}
+    volumes:
+      - used-wallpapers:${PATH_TO_USED_WALLPAPERS_DIRECTORY}
+
+volumes:
+  used-wallpapers:
+

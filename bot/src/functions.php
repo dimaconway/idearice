@@ -6,9 +6,11 @@ namespace IdeaRice;
 /**
  * Return iterable of Wallpaper instances
  *
+ * @param string $pathToUsedWallpapersFile
+ *
  * @return iterable
  */
-function getWallpapers(): iterable
+function getWallpapers(string $pathToUsedWallpapersFile): iterable
 {
     $markets = [
         'en-US',
@@ -72,7 +74,7 @@ function getWallpapers(): iterable
     ];
     $baseUrl = 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1';
 
-    $uniqueImageNames = [];
+    $usedWallpapers = loadUsedWallpapers($pathToUsedWallpapersFile);
     $wallpapers = [];
 
     foreach ($markets as $market) {
@@ -86,8 +88,8 @@ function getWallpapers(): iterable
         preg_match('/.*\/([^_]*)/', $image->urlbase, $matches);
         $imageNameFromUrl = $matches[1];
 
-        if (!\in_array($imageNameFromUrl, $uniqueImageNames, true)) {
-            $uniqueImageNames[] = $imageNameFromUrl;
+        if (!\in_array($imageNameFromUrl, $usedWallpapers, true)) {
+            $usedWallpapers[] = $imageNameFromUrl;
             $wallpapers[] = new Wallpaper(
                 $image->urlbase,
                 $image->copyright,
@@ -95,6 +97,8 @@ function getWallpapers(): iterable
             );
         }
     }
+
+    saveUsedWallpapers($usedWallpapers, $pathToUsedWallpapersFile);
 
     return $wallpapers;
 }
@@ -200,4 +204,31 @@ function postByUrl(string $url): void
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_exec($curl);
     curl_close($curl);
+}
+
+/**
+ * @param string $pathToUsedWallpapersFile
+ *
+ * @return array
+ */
+function loadUsedWallpapers(string $pathToUsedWallpapersFile): array
+{
+    $result = [];
+    if (file_exists($pathToUsedWallpapersFile)) {
+        $fileContent = trim(file_get_contents($pathToUsedWallpapersFile));
+        if ($fileContent) {
+            $result = json_decode($fileContent);
+        }
+    }
+
+    return $result;
+}
+
+/**
+ * @param array  $usedWallpapers
+ * @param string $pathToUsedWallpapersFile
+ */
+function saveUsedWallpapers(array $usedWallpapers, string $pathToUsedWallpapersFile): void
+{
+    file_put_contents($pathToUsedWallpapersFile, json_encode($usedWallpapers));
 }

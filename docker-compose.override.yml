@@ -1,5 +1,8 @@
 version: "3"
 services:
   bot:
+    environment:
+      CHAT_ID: ${CHAT_ID}_dev
     volumes:
     - ${SRC}:${APP_ROOT}
+    entrypoint: bash

@@ -4,7 +4,7 @@ source ./.env
 
 IMAGE_NAME='bot'
 TAR_NAME='container.tar'
-ZIP_NAME='deploy.sh.zip'
+ZIP_NAME='deploy.zip'
 
 docker-compose build
 docker save ${IMAGE_NAME} > ${TAR_NAME}

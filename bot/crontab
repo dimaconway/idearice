@@ -1,1 +1,1 @@
-0 15 * * * root /app/run.sh | xargs -d '\n' -n 1 echo '['`date +%Y-%m-%dT%H:%M:%S.%6N%:z`']' >> /var/log/cron.log 2>&1
+0 15 * * * root /app/run.sh | xargs -d '\n' -n 1 echo '['`date +\%Y-\%m-\%dT\%H:\%M:\%S.\%6N\%:z`']' >> /var/log/cron.log 2>&1

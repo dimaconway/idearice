@@ -22,17 +22,19 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
+
+
 ARG src
 ARG app_root
 COPY ${src} ${app_root}
 
 
 # Add crontab file in the cron directory
-ADD ${src}/crontab /etc/cron.d/bot
+COPY ${src}/crontab /etc/cron.d/bot
 # Give execution rights on the cron job
 RUN chmod 0644 /etc/cron.d/bot
-# Create the log file to be able to run tail
-RUN touch /var/log/cron.log
 
 
 WORKDIR ${app_root}

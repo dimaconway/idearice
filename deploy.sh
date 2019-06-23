@@ -2,7 +2,7 @@
 
 source ./.env
 
-IMAGE_NAME='bot'
+IMAGE_NAME=${DOCKER_IMAGES_PREFIX}'_bot'
 TAR_NAME='container.tar'
 ZIP_NAME='deploy.zip'
 

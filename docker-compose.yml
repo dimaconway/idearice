@@ -1,7 +1,7 @@
 version: "3"
 services:
   bot:
-    image: bot
+    image: ${DOCKER_IMAGES_PREFIX}_bot:latest
     env_file: .env
     build:
       context: .
